@@ -1,0 +1,67 @@
+{
+  "name": "products_mta",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@graphql-tools/schema": "^10.0.0",
+    "@sap-cloud-sdk/http-client": "^3.7.0",
+    "@sap/cds": "^7.3.1",
+    "@sap/cds-hana": "^2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4",
+    "graphql": "^16.8.0",
+    "graphql-express": "^2.0.7"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.108.13",
+    "@sapui5/ts-types": "^1.92.2",
+    "cds-swagger-ui-express": "^0.6.0",
+    "eslint": "^7.32.0"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "cds": {
+    "i18n": {
+      "default_language": "es",
+      "folders": [
+        "_i18n",
+        "i18n",
+        "assets/i18n"
+      ]
+    },
+    "requires": {
+      "sapbackend": {
+        "kind": "odata-v2",
+        "model": "srv/external/sapbackend",
+        "[development]": {
+          "credentials": {
+            "requestTimeout": 30000,
+            "url": "http://erp13.sap4practice.com:9037/sap/opu/odata/sap/YSAPUI5_SRV_01/",
+            "authentication": "NoAuthentication"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "NPL_Backend"
+          }
+        }
+      },
+
+      "db": {
+        "kind": "hana"
+      }
+    }
+  },
+  "sapux": [
+    "app/product"
+  ]
+}
